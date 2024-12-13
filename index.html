@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predis.ai Integration</title>
+</head>
+<body>
+    <button id="createPostButton">Create Post</button>
+    <script
+      type="text/javascript"
+      src="https://predis.ai/sdk/embed.js"
+      async
+      defer
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Wait for the external script to load
+      window.addEventListener("load", () => {
+        console.log('Script loaded');
+        const predis = new window.Predis();
+        predis.initialize({ appId: "2ec12383e4f84c2298ab1384aa8b844017ddb442d87a49ceb9d3f71b89b57a2e" });
+        predis.on("ready", () => {
+          console.log('Predis is ready');
+          // Attach event listener to the button
+          const createPostButton = document.getElementById("createPostButton");
+          createPostButton.addEventListener("click", () => {
+            predis.createPost({
+              onPostPublish: function (err, data) {
+                // Handle published post data
+                console.log(err, data);
+              },
+            });
+          });
+        });
+      });
+    </script>
+</body>
+</html>
+
