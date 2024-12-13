@@ -19,7 +19,20 @@
       window.addEventListener("load", () => {
         console.log('Script loaded');
         const predis = new window.Predis();
-        predis.initialize({ appId: "NlwhfY2p4hmLuI3qB08DBL0fJTeHYA1X" });
+        predis.initialize({
+  appId: "YOUR_APP_ID",
+  embedToken: "SSO_TOKEN", // optional, to enable SSO
+  customAssets: [{ url: "some_image_url" }], // optional, to pass images inside the Predis.ai post generator
+  mode: window.Predis.modes.SIMPLE, //to define if you want the detailed more or minimal mode,
+  brandDetails: {
+                    name: "Your Brand Name",
+                    logo_url: "https://predis.ai/assets/img/predis_logo-min.webp",
+                    brand_hashtags: "#preidsai",
+                    brand_website: "somewebsite.ai",
+                    brand_handle: "@predisai",
+                    brand_colors: ["#296bd6", "#ff71ab"]
+                }
+});
         predis.on("ready", () => {
           console.log('Predis is ready');
           // Attach event listener to the button
