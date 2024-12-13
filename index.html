@@ -28,8 +28,21 @@
             predis.createPost({
               onPostPublish: function (err, data) {
                 // Handle published post data
+                console.log(data, 'data')
                 console.log(err, data);
               },
+              post_idea: "This is some brief for your post", // optional
+                    business_details: {             //optional
+                          description: "Your business description goes here",
+                          products: ["product 1 details", "product 2 details"],
+                          audience: "Audience description goes here",
+                          benefits: "Business's benefits for your audience go here"
+                     },
+                    media_type: ["single_image"], // optional
+                    generation_mode: "business",   //text or business
+                    new_creation_flow : true,
+                    post_objective : "ad_creatives"
+
             });
           });
         });
